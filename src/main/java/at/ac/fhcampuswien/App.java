@@ -70,6 +70,22 @@ public class App {
         return true;
     }
 
+    public static int checkDigit(int[] digits){
+        long sum = 0;
+
+        for(int i=0; i<digits.length; i++){
+            sum += digits[i] * (i+2);
+        }
+
+        int res = 11 - (int)(sum%11);
+
+        switch (res){
+            case 10: return 0;
+            case 11: return 5;
+            default: return res;
+        }
+    }
+
     private static void printDay(int day){
         if(day < 10){
             System.out.print(" ");
