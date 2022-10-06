@@ -24,8 +24,36 @@ public class App {
             long last = i==0 ? seed : randomNumbers[i-1];
             randomNumbers[i] = ((A * last) + C) % MODULE;
         }
-        
+
         return randomNumbers;
+    }
+
+    public static void guessingGame(int numberToGuess){
+        if(numberToGuess > 100 || numberToGuess < 0){
+            throw new IllegalArgumentException();
+        }
+
+        int guessedNumber = -1;
+        int tries = 1;
+        try(Scanner scanner = new Scanner(System.in)){
+            for(; tries <= 10 && guessedNumber != numberToGuess; tries++){
+                guessedNumber = scanner.nextInt();
+                if(tries == 10) continue;
+                if(guessedNumber > numberToGuess){
+                    System.out.println("Guess number " + tries +": The number AI picked is lower than your guess.");
+                    continue;
+                }
+                if(guessedNumber < numberToGuess){
+                    System.out.println("Guess number " + tries +": The number AI picked is higher than your guess.");
+                }
+            }
+            tries--;
+            if(guessedNumber == numberToGuess){
+                System.out.println("Guess number " + tries +": You won wisenheimer!");
+            } else {
+                System.out.println("Guess number " + tries +": You lost! Have you ever heard of divide & conquer?");
+            }
+        }
     }
 
     private static void printDay(int day){
