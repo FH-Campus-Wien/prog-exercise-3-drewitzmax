@@ -56,6 +56,10 @@ public class App {
         }
     }
 
+    public static int randomNumberBetweenOneAndHundred(){
+        return (int) (Math.random()*100) + 1;
+    }
+
     public static boolean swapArrays(int[] a, int[] b){
         if(a.length != b.length){
             return false;
@@ -130,9 +134,6 @@ public class App {
         return a >= 'a' && a <= 'z';
     }
     public static void main(String[] args) {
-        // test your method implementations here
-        // make method calls
-        // print their results
-        // etc.
+        guessingGame(randomNumberBetweenOneAndHundred());
     }
 }
