@@ -13,6 +13,21 @@ public class App {
         }
     }
 
+    public static long[] lcg(long seed){
+        final long MODULE = (long) Math.pow(2, 31);
+        final long A = 1103515245;
+        final int C = 12345;
+
+        long[] randomNumbers = new long[10];
+
+        for(int i=0; i<randomNumbers.length; i++){
+            long last = i==0 ? seed : randomNumbers[i-1];
+            randomNumbers[i] = ((A * last) + C) % MODULE;
+        }
+        
+        return randomNumbers;
+    }
+
     private static void printDay(int day){
         if(day < 10){
             System.out.print(" ");
