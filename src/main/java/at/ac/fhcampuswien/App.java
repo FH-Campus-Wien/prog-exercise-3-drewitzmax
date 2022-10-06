@@ -56,6 +56,20 @@ public class App {
         }
     }
 
+    public static boolean swapArrays(int[] a, int[] b){
+        if(a.length != b.length){
+            return false;
+        }
+
+        for(int i=0; i<a.length; i++){
+            int helper = a[i];
+            a[i] = b[i];
+            b[i] = helper;
+        }
+
+        return true;
+    }
+
     private static void printDay(int day){
         if(day < 10){
             System.out.print(" ");
