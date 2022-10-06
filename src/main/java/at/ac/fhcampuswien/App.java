@@ -70,6 +70,25 @@ public class App {
         return true;
     }
 
+    public static String camelCase(String input){
+        int caseDistance = 'a'-'A';
+        StringBuilder output = new StringBuilder();
+        for(String word: input.split(" ")){
+            boolean firstCharAppended = false;
+            for(char c: word.toLowerCase().toCharArray()){
+                if(isNormalLowerCaseCharacter(c)){
+                    if(firstCharAppended){
+                        output.append(c);
+                    } else {
+                        output.append((char)(c-caseDistance));
+                        firstCharAppended = true;
+                    }
+                }
+            }
+        }
+        return output.toString();
+    }
+
     public static int checkDigit(int[] digits){
         long sum = 0;
 
@@ -105,6 +124,10 @@ public class App {
 
     private static boolean isLastDay(int currentDay, int maxDay){
         return currentDay == maxDay;
+    }
+
+    private static boolean isNormalLowerCaseCharacter(char a){
+        return a >= 'a' && a <= 'z';
     }
     public static void main(String[] args) {
         // test your method implementations here
