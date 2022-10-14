@@ -75,24 +75,53 @@ public class App {
     }
 
     public static String camelCase(String input){
-        int caseDistance = 'a'-'A';
         StringBuilder output = new StringBuilder();
-        for(String word: input.split(" ")){
-            boolean firstCharAppended = false;
-            for(char c: word.toLowerCase().toCharArray()){
-                if(isNormalLowerCaseCharacter(c)){
-                    if(firstCharAppended){
-                        output.append(c);
+        boolean isFirstOfWord = true;
+        for(char character: input.toCharArray()){
+                if(isNormalCharacter(character)){
+                    if(isFirstOfWord){
+                        output.append(toUpper(character));
+                        isFirstOfWord = false;
                     } else {
-                        output.append((char)(c-caseDistance));
-                        firstCharAppended = true;
+                        output.append(toLower(character));
                     }
+                    continue;
                 }
-            }
+                if(character == ' '){
+                    isFirstOfWord = true;
+                }
         }
         return output.toString();
     }
 
+    private static boolean isNormalCharacter(char x){
+        return (x >= 'A' && x<= 'Z') || (x >= 'a' && x<= 'z');
+    }
+
+    private static char toUpper(char x){
+        if(isNormalCharacter(x)){
+            if(x > 'Z'){
+                return (char) (x - 32);
+            }
+            else {
+                return x;
+            }
+        } else {
+            throw new IllegalArgumentException("");
+        }
+    }
+    private static char toLower(char x){
+        if(isNormalCharacter(x)){
+            if(x < 'a'){
+                return (char) (x + 32);
+            }
+            else {
+                return x;
+            }
+        } else {
+            throw new IllegalArgumentException("");
+        }
+    }
     public static int checkDigit(int[] digits){
         long sum = 0;
 
