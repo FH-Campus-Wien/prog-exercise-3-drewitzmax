@@ -159,9 +159,6 @@ public class App {
         return currentDay == maxDay;
     }
 
-    private static boolean isNormalLowerCaseCharacter(char a){
-        return a >= 'a' && a <= 'z';
-    }
     public static void main(String[] args) {
         guessingGame(randomNumberBetweenOneAndHundred());
     }
